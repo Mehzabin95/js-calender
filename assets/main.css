@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dates li.today {
+  color: white;
+  padding-left: 10px;
+  padding-right: 18px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: black;
+}
+.calendar ul li {
+  width: calc(100% / 7);
+  margin-top: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.dates li.inactive {
+  color: #ccc;
+}
+
+.selected-date-display {
+  color: red;
+}
