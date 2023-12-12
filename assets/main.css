@@ -22,5 +22,13 @@
 }
 
 .selected-date-display {
-  color: red;
+  color: rgb(85, 84, 84);
+}
+.selected-time {
+  background-color: rgb(249, 238, 211);
+  color: black;
+}
+.selected-date {
+  color: rgb(226, 107, 10);
+  font-weight: bolder;
 }

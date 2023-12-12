@@ -2,9 +2,9 @@ const header = document.querySelector(".calendar h3");
 const dates = document.querySelector(".dates");
 const navs = document.querySelectorAll("#prev, #next");
 
-const selectedDateDisplay = document.createElement("div");
-selectedDateDisplay.classList.add("selected-date-display");
-document.body.appendChild(selectedDateDisplay);
+// const selectedDateDisplay = document.createElement("div");
+// selectedDateDisplay.classList.add("selected-date-display");
+// document.body.appendChild(selectedDateDisplay);
 
 const months = [
   "January",
@@ -24,9 +24,21 @@ let date = new Date();
 let month = date.getMonth();
 let year = date.getFullYear();
 
-function showSelectedDate(selectedDate) {
+function showSelectedDate(e, selectedDate) {
+  console.log(e.target);
+  e.target.classList.add("selected-date");
   const selectedDateText = `${months[month]} ${selectedDate}, ${year}`;
-  selectedDateDisplay.textContent = `Selected date: ${selectedDateText}`;
+
+  const detailsElement = document.querySelector("#details p");
+
+  detailsElement.textContent = ` ${selectedDateText}`;
+}
+
+function handleTimeClick(e, selectedTime) {
+  // Update the UI to display the selected time
+  e.target.classList.add("selected-time");
+  const selectedDateDisplay = document.querySelector("#details span");
+  selectedDateDisplay.textContent = `${selectedTime}`;
 }
 
 function renderCalendar() {
@@ -49,7 +61,7 @@ function renderCalendar() {
         ? 'class = "today" '
         : ' class = "cursor-pointer" ';
 
-    datesHtml += `<li ${className} onclick="showSelectedDate(${i})" >${i}</li>`;
+    datesHtml += `<li ${className} onclick="showSelectedDate(event, ${i})" >${i}</li>`;
   }
 
   dates.innerHTML = datesHtml;
@@ -76,6 +88,7 @@ navs.forEach((nav) => {
     month = date.getMonth();
 
     renderCalendar();
+    showSelectedDate(date.getDate());
   });
 });
 
