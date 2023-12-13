@@ -25,16 +25,27 @@ let month = date.getMonth();
 let year = date.getFullYear();
 
 function showSelectedDate(e, selectedDate) {
-  console.log(e.target);
-  e.target.classList.add("selected-date");
-  const selectedDateText = `${months[month]} ${selectedDate}, ${year}`;
+  // Remove "selected-date" class from previously selected date
+  const prevSelectedDate = document.querySelector(".selected-date");
+  if (prevSelectedDate) {
+    prevSelectedDate.classList.remove("selected-date");
+  }
 
+  // Add "selected-date" class to the clicked date
+  e.target.classList.add("selected-date");
+
+  const selectedDateText = `${months[month]} ${selectedDate}, ${year}`;
   const detailsElement = document.querySelector("#details p");
 
   detailsElement.textContent = ` ${selectedDateText}`;
 }
 
 function handleTimeClick(e, selectedTime) {
+  // Remove "selected-date" class from previously selected date
+  const prevSelectedTime = document.querySelector(".selected-time");
+  if (prevSelectedTime) {
+    prevSelectedTime.classList.remove("selected-time");
+  }
   // Update the UI to display the selected time
   e.target.classList.add("selected-time");
   const selectedDateDisplay = document.querySelector("#details span");
